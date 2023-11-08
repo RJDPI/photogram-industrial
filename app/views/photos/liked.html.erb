@@ -1,17 +1,15 @@
 <div class="row">
   <div class="col md-6 offset-3">
-    <h1>
-      <%= @user.username %>
-    </h1>
+  <h1>
+<%= @user.username %>
+</h1>
 
-    <ul class="nav nav-pills nav-justified">
+  <ul class="nav nav-pills nav-justified">
       <li class="nav-item">
-        <!--<a class="nav-link active" href="#">Posts</a>-->
         <%= link_to "Posts", user_path(@user.username), class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <!--<a class="nav-link" href="#">Liked photos</a>-->
-        <%= link_to "Liked photos", liked_path(@user.username), class: "nav-link" %>
+        <%= link_to "Liked photos", liked_photos_path(@user.username), class: "nav-link" %>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Feed</a>
@@ -26,7 +24,16 @@
   </div>
 </div>
 
-<% @user.own_photos.each do |photo| %>
+
+
+
+<!--<h2>Own photos</h2>-->
+
+<% @user._photos.each do |photo| %>
+<%= render "photos/photo", photo: photo %>
+<% end %>
+
+
 
   <div class="row mb-4">
     <div class="col-md-6 offset-md-3">
@@ -51,7 +58,9 @@
             </li>
           <% end %>
         </ul>
-         <div class="card-body">
+
+      
+      <div class="card-body">
           <%= render "comments/form", comment: Comment.new(photo_id: photo.id) %>
         </div>
         
