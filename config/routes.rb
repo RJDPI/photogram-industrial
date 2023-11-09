@@ -12,3 +12,5 @@ Rails.application.routes.draw do
 
   get ":username" => "users#show", as: :user
 end
+
+
